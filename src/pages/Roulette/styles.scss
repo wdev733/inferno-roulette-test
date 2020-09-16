@@ -1,0 +1,54 @@
+.root {
+  width: 100%;
+  color: #fff;
+  box-sizing: border-box;
+  padding: 16px;
+
+  .status {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    align-items: flex-start;
+
+    .statistics {
+      flex: 1;
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+    }
+  }
+  .roll {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+
+    .winner {
+      width: 48px;
+      margin: 16px;
+    }
+  }
+  .bettings {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 48px;
+    box-sizing: border-box;
+
+    @media only screen and (max-width: 880px) {
+      flex-direction: column;
+    }
+
+    .board {
+      width: 32%;
+      box-sizing: border-box;
+
+      @media only screen and (max-width: 880px) {
+        width: 100%;
+        margin-bottom: 16px;
+      }
+    }
+  }
+}
