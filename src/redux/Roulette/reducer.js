@@ -48,7 +48,7 @@ const rouletteReducer = (state = initialState, action) => {
     }
     case ROULETTE_ROLL: {
       let { statistics } = action.payload;
-      console.log(statistics);
+
       const oldStatistics = state.statistics;
 
       let lastWinner = "";
