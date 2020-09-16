@@ -1,5 +1,12 @@
 .root {
   width: 100%;
+  box-sizing: border-box;
+  padding: 8px;
+
+  &.winner {
+    border: 2px solid #16e263;
+    border-radius: 6px;
+  }
 
   .top {
     width: 100%;
@@ -44,7 +51,15 @@
     }
 
     .amount {
-      color: #fff
+      color: #fff;
+
+      &.winner {
+        color: #16e263;
+      }
+
+      &.failure {
+        color: #cf2f01;
+      }
     }
   }
 
@@ -69,6 +84,14 @@
 
       .amount {
         color: #fff;
+
+        &.winner {
+          color: #16e263;
+        }
+
+        &.failure {
+          color: #cf2f01;
+        }
       }
     }
   }

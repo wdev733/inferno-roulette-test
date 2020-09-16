@@ -17,15 +17,21 @@ class Roulette extends Component {
       currentStatus,
       lastWinner,
     } = this.props;
+
+    const winner = currentStatus === "Roll" ? lastWinner : "";
+
     return (
       <div className={styles.root}>
         <div className={styles.status}>
           <RouletteStatistics className={styles.statistics} data={statistics} />
         </div>
         <div className={styles.roll}>
-          <h2>{currentStatus}</h2>
+          <h2>{currentStatus === "Roll" ? "Winner: " : "Betting Time"}</h2>
           {currentStatus === "Roll" && lastWinner !== "" && (
-            <img className={styles.winner} src={`src/assets/images/bet-${lastWinner}.png`} />
+            <img
+              className={styles.winner}
+              src={`src/assets/images/bet-${lastWinner}.png`}
+            />
           )}
         </div>
         <div className={styles.bettings}>
@@ -34,18 +40,21 @@ class Roulette extends Component {
             board="black"
             multiple={2}
             data={bettings.black}
+            winner={winner}
           />
           <RouletteBettingBoard
             className={styles.board}
             board="green"
             multiple={14}
             data={bettings.green}
+            winner={winner}
           />
           <RouletteBettingBoard
             className={styles.board}
             board="red"
             multiple={2}
             data={bettings.red}
+            winner={winner}
           />
         </div>
       </div>

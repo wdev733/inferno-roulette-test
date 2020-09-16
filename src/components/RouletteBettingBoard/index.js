@@ -6,7 +6,7 @@ import classnames from "classnames";
 
 class RouletteBettingBoard extends Component {
   render() {
-    const { board, multiple, data, className } = this.props;
+    const { board, multiple, data, winner, className } = this.props;
 
     let totalAmount = 0;
 
@@ -14,8 +14,13 @@ class RouletteBettingBoard extends Component {
       totalAmount += parseFloat(data[i].amount);
     }
 
+    const winnerClass =
+      winner === "" ? "" : winner === board ? styles.winner : styles.failure;
+
+    const winnerStatus = winner === "" ? 0 : winner === board ? 1 : -1;
+
     return (
-      <div className={classnames(styles.root, className)}>
+      <div className={classnames(styles.root, winnerClass, className)}>
         <div className={styles.top}>
           <img
             src={`src/assets/images/bet-${board}.png`}
@@ -29,8 +34,12 @@ class RouletteBettingBoard extends Component {
         </div>
         <div className={styles.total}>
           <div className={styles.count}>{`${data.length} Total Bets`}</div>
-          <div className={styles.amount}>
-            {`${totalAmount.toFixed(2)} `}
+          <div className={classnames(styles.amount, winnerClass)}>
+            {`${winnerStatus === 1 ? "+" : winnerStatus === -1 ? "-" : ""}${
+              winnerStatus === 1
+                ? (totalAmount * 2).toFixed(2)
+                : totalAmount.toFixed(2)
+            } `}
             <svg
               fill="#ff0000"
               xmlns="http://www.w3.org/2000/svg"
@@ -54,8 +63,12 @@ class RouletteBettingBoard extends Component {
             <div className={styles.player}>
               <img className={styles.avatar} src={d.avatar} />
               <div className={styles.name}>{d.name}</div>
-              <div className={styles.amount}>
-                {`${d.amount} `}
+              <div className={classnames(styles.amount, winnerClass)}>
+                {`${winnerStatus === 1 ? "+" : winnerStatus === -1 ? "-" : ""}${
+                  winnerStatus === 1
+                    ? parseFloat(d.amount * 2).toFixed(2)
+                    : parseFloat(d.amount).toFixed(2)
+                } `}
                 <svg
                   fill="#ff0000"
                   xmlns="http://www.w3.org/2000/svg"
